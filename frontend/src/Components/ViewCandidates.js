@@ -4,8 +4,8 @@ import Loader from "./Loader";
 const ViewCandidates = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  // let data;
   
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -18,7 +18,14 @@ const ViewCandidates = () => {
     getData();
   }, []);
   return (
-    <>
+    <div  style={{   backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    
+       backgroundImage: `url('${process.env.PUBLIC_URL}/img.jpg')`,
+   }}>   
+
       {loading ? (
         <Loader />
       ) : (
@@ -29,12 +36,12 @@ const ViewCandidates = () => {
                 <div className="flex flex-wrap items-center">
                   <div className="relative w-full px-4 max-w-full flex-grow flex-1">
                     <h3 className="font-semibold text-base text-blueGray-700">
-                      Page Visits
+                      Candidates
                     </h3>
                   </div>
                   <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                     <button
-                      className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className="bg-gray-800 text-white active:bg-gray-800 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
                     >
                       {data.length}{"  Candidates"}
@@ -44,7 +51,7 @@ const ViewCandidates = () => {
               </div>
 
               <div className="block w-full overflow-x-auto">
-                <table className="table-auto items-center bg-transparent w-full border-collapse ">
+                <table className="table table-dark table-striped">
                   <thead>
                     <tr>
                       <th className="w-1/12 px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
@@ -154,7 +161,7 @@ const ViewCandidates = () => {
           </footer>
         </section>
       )}
-    </>
+    </div>
   );
 };
 

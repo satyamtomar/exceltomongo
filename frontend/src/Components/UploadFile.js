@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import {Alert,SuccessAlert} from "./Alert";
+import Loader from "./Loader";
 
 const APIURL = "http://localhost:8000";
 const UploadFile = () => {
+
   const ref = useRef(null);
   const [file, setFile] = useState(null);
   const [display, setDisplay] = useState(false);
@@ -53,11 +55,21 @@ const UploadFile = () => {
     setFile(null);
   };
   return (
-    <>
+    
+    <div  style={{   backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh',
+       backgroundImage: `url('${process.env.PUBLIC_URL}/img.jpg')`,
+   }}>   
+ {loading ? (
+      <Loader />
+    ):(
       <div className="max-w-100 rounded overflow-hidden  flex justify-center">
         <Alert display={display} />
         <SuccessAlert display={success} />
-        <div className="py-20 h-screen  px-2 shadow-lg w-96"  style={{marginLeft:"auto",marginRight:"auto"}}>
+        <div className="py-20 h-screen  px-2  w-96"  style={{ paddingTop:'20vh',marginLeft:"auto",marginRight:"auto"}}>
           <div className="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
             <div className="md:flex">
               <div className="w-full">
@@ -112,7 +124,7 @@ const UploadFile = () => {
                   <div className="mt-3 text-center pb-3">
                     {" "}
                     <button
-                      className="w-full h-12 text-lg w-32 bg-blue-600 rounded text-white hover:bg-blue-700"
+                      className="w-full h-12 text-lg w-32 bg-gray-800 rounded text-white hover:bg-gray-800"
                       onClick={handleSubmit}
                       disabled={loading}
                       style={{display:"flex",alignItems: "center",justifyContent: "center"}}
@@ -128,10 +140,11 @@ const UploadFile = () => {
             </div>
           </div>
         </div>
+    
       </div>
-
-      {/* </div> */}
-    </>
+    )}
+    </div>
+    
   );
 }
 
