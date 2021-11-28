@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
-const ViewCandidates = () => {
+const ViewCandidates = (props) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   
@@ -9,11 +9,14 @@ const ViewCandidates = () => {
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-
+      props.setProgress(10)
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getData`);
+      props.setProgress(40);
       setData([...res.data]);
+      props.setProgress(70);
       console.log(data);
       setLoading(false);
+      props.setProgress(100);
     };
     getData();
   }, []);

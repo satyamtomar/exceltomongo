@@ -5,17 +5,26 @@ import UploadFile from "./Components/UploadFile";
 import Navbar from "./Components/Navbar";
 import ViewCandidates from "./Components/ViewCandidates";
 import Home from "./Components/Home";
+import LoadingBar from 'react-top-loading-bar'
+
 function App() {
+  const [progress,setProgress]=useState(0)
+  
   return (
     <>
       <Router>
       <Navbar />
-
+      <LoadingBar
+        height={3}
+       color='#ffffff'
+        progress={progress}
+      />
+  
         <Routes>
-        <Route exact path="/" key="home" element={<Home />} />
+        <Route exact path="/" key="home"  element={<Home setProgress={setProgress} />} />
           
-          <Route exact path="/upload" key="upload" element={<UploadFile />} />
-          <Route exact path="/view" key="view" element={<ViewCandidates />} />
+          <Route exact path="/upload" key="upload" element={<UploadFile setProgress={setProgress} />} />
+          <Route exact path="/view" key="view" element={<ViewCandidates setProgress={setProgress} />} />
         </Routes>
       </Router>
     </>

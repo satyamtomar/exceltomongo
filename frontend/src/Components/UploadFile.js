@@ -1,16 +1,28 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect,useState, useRef } from "react";
 import axios from "axios";
 import {Alert,SuccessAlert} from "./Alert";
 import Loader from "./Loader";
 
 const APIURL = "http://localhost:8000";
-const UploadFile = () => {
+const UploadFile = (props) => {
 
   const ref = useRef(null);
   const [file, setFile] = useState(null);
   const [display, setDisplay] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+   
+  useEffect(() => {
+      const getData = async () => {
+        setLoading(true);
+        props.setProgress(10)
+        props.setProgress(40);
+        props.setProgress(70);
+        setLoading(false);
+        props.setProgress(100);
+      };
+      getData();
+    }, []);
 
   const sendFile = async (data) => {
     const res = await axios({
