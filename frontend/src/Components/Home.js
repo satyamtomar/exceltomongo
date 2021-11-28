@@ -2,14 +2,26 @@ import React,{useEffect,useState} from 'react'
 import Loader from "./Loader.js"
 const Home = (props) => {
     const [loading,setLoading]= useState(0);
+    
+    function timeout(delay) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
+    
     useEffect(() => {
         const getData = async () => {
           setLoading(true);
-          props.setProgress(10)
+          props.setProgress(10);
+          await timeout(500);
           props.setProgress(40);
+          
+          setTimeout(() => {   }, 2000);
+
           props.setProgress(70);
+          
+          await timeout(500);
           setLoading(false);
           props.setProgress(100);
+          
         };
         getData();
       }, []);

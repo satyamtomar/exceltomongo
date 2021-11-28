@@ -12,12 +12,18 @@ const UploadFile = (props) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
    
+  function timeout(delay) {
+    return new Promise( res => setTimeout(res, delay) );
+}
+
   useEffect(() => {
       const getData = async () => {
         setLoading(true);
-        props.setProgress(10)
+        props.setProgress(10);
+        await  timeout(500)
         props.setProgress(40);
         props.setProgress(70);
+        await timeout(500);
         setLoading(false);
         props.setProgress(100);
       };
@@ -82,26 +88,26 @@ const UploadFile = (props) => {
         <Alert display={display} />
         <SuccessAlert display={success} />
         <div className="py-20 h-screen  px-2  w-96"  style={{ paddingTop:'20vh',marginLeft:"auto",marginRight:"auto"}}>
-          <div className="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
+          <div className="max-w-md mx-auto bg-gray-100 rounded-lg overflow-hidden md:max-w-lg">
             <div className="md:flex">
               <div className="w-full">
                 <div className="p-4 border-b-2">
                   {" "}
                   <span className="text-lg font-bold text-gray-600">
-                    Add document
+                    Add a new document
                   </span>{" "}
                 </div>
                 <div className="p-3">
                   <div className="mb-2">
                     {" "}
                     <span>Attachment</span>
-                    <div className="relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+                    <div className="relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-gray-300 flex justify-center items-center hover:cursor-pointer">
                       <div className="absolute">
                         <div className="flex flex-col items-center ">
                           {" "}
                           <i className="fa fa-cloud-upload fa-3x text-gray-200"></i>{" "}
                           <span className="block text-gray-400 font-normal">
-                            Attach you files here
+                            Attach your file here
                           </span>{" "}
                           <span className="block text-gray-400 font-normal">
                             or
@@ -130,7 +136,7 @@ const UploadFile = (props) => {
                     </span>
                     <div className="flex justify-between items-center text-gray-400">
                       {" "}
-                      <span>Accepted file type: .xlsx , .xls only</span>{" "}
+                      <span>Accepted file type are: .xlsx , .xls only</span>{" "}
                     </div>
                   </div>
                   <div className="mt-3 text-center pb-3">
