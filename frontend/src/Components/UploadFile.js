@@ -16,8 +16,7 @@ const UploadFile = (props) => {
     return new Promise( res => setTimeout(res, delay) );
 }
 
-  useEffect(() => {
-      const getData = async () => {
+  useEffect(async () => {
         setLoading(true);
         props.setProgress(10);
         await  timeout(500)
@@ -26,8 +25,7 @@ const UploadFile = (props) => {
         await timeout(500);
         setLoading(false);
         props.setProgress(100);
-      };
-      getData();
+      
     }, []);
 
   const sendFile = async (data) => {
@@ -55,9 +53,10 @@ const UploadFile = (props) => {
         file.type === "application/vnd.ms-excel")
     ) {
       let bodyFormData = new FormData();
+      console.log(bodyFormData);
       bodyFormData.append("xlsx", file);
       setLoading(true);
-      await sendFile(bodyFormData);
+     await sendFile(bodyFormData);
       setLoading(false);
 
       setSuccess(true);

@@ -5,9 +5,9 @@ const cors = require("cors");
 const errorMiddleware = require("./middleware/error");
 const PORT = process.env.PORT || 8000;
 
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "./config.env" });
-}
+
+require("dotenv").config({ path: "./config.env" });
+
 
 require("./connectDB");
 app.use(express.json());

@@ -16,5 +16,5 @@ var uploads = multer({ storage: storage });
 
 router.post("/upload", uploads.single("xlsx"), uploadFile);
 router.get("/getData",getData);
-
 module.exports = router;
+
