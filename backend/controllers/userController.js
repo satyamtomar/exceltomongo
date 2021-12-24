@@ -27,6 +27,7 @@ const addUser = async (val, cb) => {
     try {
       const user = await User.findOne({ email: val.Email });
       if (!user) {
+
         await User.create(obj);
       }
     } catch (err) {
